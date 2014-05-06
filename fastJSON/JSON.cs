@@ -619,17 +619,20 @@ namespace fastJSON
             int year;
             int month;
             int day;
-            int hour;
-            int min;
-            int sec;
-            int millisec;
+            int hour = 0;
+            int min = 0;
+            int sec = 0;
+            int millisec = 0;
             CreateInteger(out year, value, 0, 4);
             CreateInteger(out month, value, 5, 2);
             CreateInteger(out day, value, 8, 2);
-            CreateInteger(out hour, value, 11, 2);
-            CreateInteger(out min, value, 14, 2);
-            CreateInteger(out sec, value, 17, 2);
-            CreateInteger(out millisec, value, 20, 3);
+            if (value.Length > 10)
+            {
+                CreateInteger(out hour, value, 11, 2);
+                CreateInteger(out min, value, 14, 2);
+                CreateInteger(out sec, value, 17, 2);
+                CreateInteger(out millisec, value, 20, 3);
+            }
 
             //if (value.EndsWith("Z"))
             if (value[value.Length - 1] == 'Z')
